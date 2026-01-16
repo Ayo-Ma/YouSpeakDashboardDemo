@@ -1,24 +1,45 @@
-import React from "react";
-import Sidebar from "../components/SideBar";
 
+import Sidebar from "../components/SideBar";
+import Card from "../components/Card";
+import ActionCard from "../components/ActionCard";
+import StatCard from "./StatCard";
+import ActivityItem from "../components/ActivityItem";
+import Select from "../components/Select";
+import {
+  MdOutlineLibraryBooks,
+  MdOutlineQuiz,
+  MdOutlineSportsEsports,
+  MdOutlineSchool,
+  MdInsertChartOutlined,
+  MdNotificationsNone,
+  MdUploadFile,
+  MdEmojiEvents,
+  MdDownload,
+} from "react-icons/md";
 
 const quickActions = [
-  { title: "Create class", subtitle: "Set up new roster", icon: IconBookOpen },
-  { title: "Create assignment", subtitle: "New task or quiz", icon: IconClipboard },
-  { title: "Schedule arena", subtitle: "Live challenges", icon: IconCalendar },
+  { title: "Create class", subtitle: "Set up new roster", icon: MdOutlineLibraryBooks },
+  { title: "Create assignment", subtitle: "New task or quiz", icon: MdOutlineQuiz },
+  { title: "Schedule arena", subtitle: "Live challenges", icon: MdOutlineSportsEsports },
 ];
 
 const stats = [
-  { title: "Active Students", value: "200", note: "+3 enrolled this week", icon: IconCap },
-  { title: "Classes managed", value: "2", note: "Next class in 55m", icon: IconBook },
-  { title: "Assessment analytics", value: "78%", note: "Average score", icon: IconBars, progress: 78 },
+  { title: "Active Students", value: "200", note: "+3 enrolled this week", icon: MdOutlineSchool },
+  { title: "Classes managed", value: "2", note: "Next class in 55m", icon: MdOutlineLibraryBooks },
+  {
+    title: "Assessment analytics",
+    value: "78%",
+    note: "Average score",
+    icon: MdInsertChartOutlined,
+    progress: 78,
+  },
 ];
 
 const activity = [
-  { tone: "soft", text: 'John Doe submitted “unit 3 essay”', meta: "09-12-25, 9:30am", icon: IconBell },
-  { tone: "tint", text: 'You uploaded a new resource, “Grammar guide PDF”', meta: "10-12-25, 9:30am", icon: IconUpload },
-  { tone: "soft", text: "Class 5B finished ‘French: Greetings Basics’ with an avg score of 88%.", meta: "09-12-25, 9:30am", icon: IconBell },
-  { tone: "soft", text: "Class 5B finished ‘French: Greetings Basics’ with an avg score of 88%.", meta: "09-12-25, 9:30am", icon: IconBell },
+  { tone: "soft", text: 'John Doe submitted “unit 3 essay”', meta: "09-12-25, 9:30am", icon: MdNotificationsNone },
+  { tone: "tint", text: 'You uploaded a new resource, “Grammar guide PDF”', meta: "10-12-25, 9:30am", icon: MdUploadFile },
+  { tone: "soft", text: "Class 5B finished ‘French: Greetings Basics’ with an avg score of 88%.", meta: "09-12-25, 9:30am", icon: MdNotificationsNone },
+  { tone: "soft", text: "Class 5B finished ‘French: Greetings Basics’ with an avg score of 88%.", meta: "09-12-25, 9:30am", icon: MdNotificationsNone },
 ];
 
 const topics = [
@@ -30,7 +51,8 @@ const topics = [
   { topic: "Micheal Adi", students: 14, mastery: 95 },
 ];
 
-export default function MainSection() {
+
+const MainSection = () => {
   return (
     <main className="mt-6 flex gap-8">
       <Sidebar />
@@ -72,13 +94,13 @@ export default function MainSection() {
           {/* Right area */}
           <div className="space-y-6">
             <Card className="text-center">
-              <div className="mx-auto inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-semibold">
-                <IconTrophy className="h-4 w-4" />
+              <div className="mx-auto inline-flex items-center gap-2 rounded-full text-accent-gold  border px-4 py-2 text-[18px] font-semibold">
+                <MdEmojiEvents className="h-5 w-5" />
                 Star of the week
               </div>
 
               <div className="mt-5 flex flex-col items-center">
-                <div className="h-16 w-16 overflow-hidden rounded-full border">
+                <div className="h-16 w-16 overflow-hidden rounded-full border-accent-gold border-4 ">
                   <img
                     alt="Student"
                     className="h-full w-full object-cover"
@@ -87,15 +109,15 @@ export default function MainSection() {
                 </div>
 
                 <div className="mt-3">
-                  <p className="text-base font-semibold">Ella Bassey</p>
-                  <p className="text-sm text-slate-600">Advanced french</p>
+                  <p className="text-[18px] font-bold text-black-900">Ella Bassey</p>
+                  <p className="text-base text-muted">Advanced french</p>
                 </div>
 
-                <div className="mt-4 w-full rounded-xl border px-4 py-3 text-sm text-slate-700">
+                <div className="mt-4 w-56.75 rounded-xl  px-4 py-3 text-base/relaxed text-black-600">
                   “Achieved a 7-day speaking streak with 90% fluency rating!”
                 </div>
 
-                <button className="mt-4 w-full rounded-xl border px-4 py-3 text-sm font-semibold hover:bg-slate-50">
+                <button className="mt-4 w-full rounded-xl shadow-gray-300 bg-primary-500 text-white px-4 py-4 text-base font-bold hover:bg-primary-700 shadow-md hover:shadow-lg outline-none transition-all">
                   Send congratulations
                 </button>
               </div>
@@ -112,7 +134,7 @@ export default function MainSection() {
               <Select label="Current Semester" />
               <Select label="Switch classes" />
               <button className="inline-flex h-10 w-10 items-center justify-center rounded-xl border hover:bg-slate-50">
-                <IconDownload className="h-5 w-5" />
+                <MdDownload className="h-5 w-5" />
               </button>
             </div>
           </div>
@@ -153,256 +175,7 @@ export default function MainSection() {
         </Card>
       </section>
     </main>
-  );
+  )
 }
 
-
-
-
-/* -------------------------------- Components ------------------------------- */
-
-function Card({ className = "", children }) {
-  return (
-    <div className={`rounded-2xl border border-slate-200 bg-white p-5 ${className}`}>
-      {children}
-    </div>
-  );
-}
-
-function ActionCard({ title, subtitle, icon: Icon, featured = false }) {
-  return (
-    <div
-      className={[
-        "rounded-2xl border border-slate-200 bg-white p-5 flex items-center gap-4",
-        featured ? "shadow-sm" : "",
-      ].join(" ")}
-    >
-      <span className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border">
-        <Icon className="h-5 w-5" />
-      </span>
-
-      <div className="min-w-0">
-        <p className="font-semibold">{title}</p>
-        <p className="text-sm text-slate-600">{subtitle}</p>
-      </div>
-    </div>
-  );
-}
-
-function StatCard({ title, value, note, icon: Icon, progress }) {
-  return (
-    <Card className="p-5">
-      <div className="flex items-start justify-between gap-4">
-        <div>
-          <p className="text-sm font-semibold">{title}</p>
-          <p className="mt-2 text-3xl font-semibold">{value}</p>
-          <p className="mt-2 text-sm text-slate-600">{note}</p>
-        </div>
-
-        <span className="inline-flex h-10 w-10 items-center justify-center rounded-2xl border">
-          <Icon className="h-5 w-5" />
-        </span>
-      </div>
-
-      {typeof progress === "number" && (
-        <div className="mt-4">
-          <div className="h-2 rounded-full bg-slate-200">
-            <div className="h-2 rounded-full bg-slate-900" style={{ width: `${progress}%` }} />
-          </div>
-        </div>
-      )}
-    </Card>
-  );
-}
-
-function ActivityItem({ text, meta, icon: Icon, tone = "soft" }) {
-  const bg =
-    tone === "tint" ? "bg-slate-50 border-slate-200" : "bg-white border-slate-200";
-
-  return (
-    <li className={`flex items-start gap-3 rounded-2xl border ${bg} p-3`}>
-      <span className="inline-flex h-10 w-10 items-center justify-center rounded-2xl border bg-white">
-        <Icon className="h-4 w-4" />
-      </span>
-
-      <div className="min-w-0">
-        <p className="text-sm font-medium text-slate-900">{text}</p>
-        <p className="mt-1 text-xs text-slate-500">{meta}</p>
-      </div>
-    </li>
-  );
-}
-
-function Select({ label }) {
-  return (
-    <button className="inline-flex h-10 items-center gap-2 rounded-xl border px-3 text-sm font-medium hover:bg-slate-50">
-      {label}
-      <IconChevronDown className="h-4 w-4" />
-    </button>
-  );
-}
-
-/* ---------------------------------- Icons --------------------------------- */
-
-function IconBase({ className = "", children }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" className={className} xmlns="http://www.w3.org/2000/svg">
-      {children}
-    </svg>
-  );
-}
-
-function IconChevronDown({ className }) {
-  return (
-    <IconBase className={className}>
-      <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-    </IconBase>
-  );
-}
-
-function IconDownload({ className }) {
-  return (
-    <IconBase className={className}>
-      <path d="M12 3v10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-      <path d="M8 11l4 4 4-4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M4 21h16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-    </IconBase>
-  );
-}
-
-function IconBookmark({ className }) {
-  return (
-    <IconBase className={className}>
-      <path d="M7 3h10v18l-5-3-5 3V3z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
-    </IconBase>
-  );
-}
-
-function IconDoc({ className }) {
-  return (
-    <IconBase className={className}>
-      <path d="M7 3h7l3 3v15H7V3z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
-      <path d="M14 3v4h4" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
-    </IconBase>
-  );
-}
-
-function IconChart({ className }) {
-  return (
-    <IconBase className={className}>
-      <path d="M4 19V5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-      <path d="M4 19h16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-      <path d="M8 15v-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-      <path d="M12 15V8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-      <path d="M16 15v-7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-    </IconBase>
-  );
-}
-
-function IconArena({ className }) {
-  return (
-    <IconBase className={className}>
-      <path d="M5 7h14v12H5V7z" stroke="currentColor" strokeWidth="2" />
-      <path d="M9 7V5h6v2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-      <path d="M8 11h8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-      <path d="M8 15h5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-    </IconBase>
-  );
-}
-
-function IconTrophy({ className }) {
-  return (
-    <IconBase className={className}>
-      <path d="M8 4h8v3a4 4 0 01-8 0V4z" stroke="currentColor" strokeWidth="2" />
-      <path d="M6 7H4a3 3 0 003 3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-      <path d="M18 7h2a3 3 0 01-3 3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-      <path d="M12 11v4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-      <path d="M9 19h6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-      <path d="M10 15h4v4h-4v-4z" stroke="currentColor" strokeWidth="2" />
-    </IconBase>
-  );
-}
-
-function IconBookOpen({ className }) {
-  return (
-    <IconBase className={className}>
-      <path d="M3 5h7a3 3 0 013 3v13H6a3 3 0 01-3-3V5z" stroke="currentColor" strokeWidth="2" />
-      <path d="M21 5h-7a3 3 0 00-3 3v13h7a3 3 0 003-3V5z" stroke="currentColor" strokeWidth="2" />
-    </IconBase>
-  );
-}
-
-function IconClipboard({ className }) {
-  return (
-    <IconBase className={className}>
-      <path d="M9 4h6l1 2h3v16H5V6h3l1-2z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
-      <path d="M9 4v2h6V4" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
-    </IconBase>
-  );
-}
-
-function IconCalendar({ className }) {
-  return (
-    <IconBase className={className}>
-      <path d="M7 3v3M17 3v3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-      <path d="M4 7h16v14H4V7z" stroke="currentColor" strokeWidth="2" />
-      <path d="M4 11h16" stroke="currentColor" strokeWidth="2" />
-    </IconBase>
-  );
-}
-
-function IconCap({ className }) {
-  return (
-    <IconBase className={className}>
-      <path d="M12 3l10 6-10 6L2 9l10-6z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
-      <path d="M6 12v5c0 1 3 3 6 3s6-2 6-3v-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-    </IconBase>
-  );
-}
-
-function IconBook({ className }) {
-  return (
-    <IconBase className={className}>
-      <path d="M6 4h10a2 2 0 012 2v14H8a2 2 0 00-2 2V4z" stroke="currentColor" strokeWidth="2" />
-      <path d="M6 20h10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-    </IconBase>
-  );
-}
-
-function IconBars({ className }) {
-  return (
-    <IconBase className={className}>
-      <path d="M6 20V10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-      <path d="M12 20V4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-      <path d="M18 20V14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-    </IconBase>
-  );
-}
-
-function IconBell({ className }) {
-  return (
-    <IconBase className={className}>
-      <path
-        d="M12 22a2 2 0 002-2H10a2 2 0 002 2z"
-        fill="currentColor"
-        opacity="0.2"
-      />
-      <path
-        d="M18 16H6l1-2v-4a5 5 0 0110 0v4l1 2z"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinejoin="round"
-      />
-    </IconBase>
-  );
-}
-
-function IconUpload({ className }) {
-  return (
-    <IconBase className={className}>
-      <path d="M12 16V6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-      <path d="M8 10l4-4 4 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M4 20h16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-    </IconBase>
-  );
-}
+export default MainSection;
