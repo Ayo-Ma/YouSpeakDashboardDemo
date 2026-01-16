@@ -78,7 +78,7 @@ const MainSection = () => {
             <Card>
               <div className="flex items-center justify-between">
                 <h3 className="text-sm font-semibold">Activity Summary</h3>
-                <a href="#" className="text-sm font-medium underline underline-offset-4">
+                <a href="#" className="text-sm font-medium underline decoration- underline-offset-4">
                   see more
                 </a>
               </div>
@@ -128,41 +128,41 @@ const MainSection = () => {
         {/* Table */}
         <Card className="mt-6">
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-            <h3 className="text-sm font-semibold">Class overview by topic</h3>
+            <h3 className="text-lg text-black-800 font-medium ">Class overview by topic</h3>
 
             <div className="flex flex-wrap items-center gap-3">
               <Select label="Current Semester" />
               <Select label="Switch classes" />
-              <button className="inline-flex h-10 w-10 items-center justify-center rounded-xl border hover:bg-slate-50">
+              <button className="inline-flex h-10 w-10 text-black-600 items-center justify-center rounded-xl bg-soft-blue border border-primary-200 ">
                 <MdDownload className="h-5 w-5" />
               </button>
             </div>
           </div>
 
           <div className="mt-4 overflow-x-auto">
-            <table className="w-full min-w-[760px] text-left text-sm">
-              <thead className="border-y bg-slate-50/60">
-                <tr className="text-slate-600">
-                  <th className="px-4 py-3 font-medium">Topics</th>
-                  <th className="px-4 py-3 font-medium">Active students</th>
-                  <th className="px-4 py-3 font-medium">Topic mastery</th>
+            <table className="w-full min-w-[760px] text-left text-base">
+              <thead className="border-y bg-pale-blue border-black-200">
+                <tr className="text-black-600">
+                  <th className="px-6 py-3 font-normal">Topics</th>
+                  <th className="px-6 py-3 font-normal">Active students</th>
+                  <th className="px-6 py-3 font-normal">Topic mastery</th>
                 </tr>
               </thead>
 
               <tbody className="divide-y">
                 {topics.map((row, idx) => (
                   <tr key={idx} className="hover:bg-slate-50/50">
-                    <td className="px-4 py-4">{row.topic}</td>
-                    <td className="px-4 py-4">{row.students}</td>
+                    <td className="px-4 py-4 text-[24px] text-bold text-black-600">{row.topic}</td>
+                    <td className="px-4 py-4 text-base text-black-600">{row.students}</td>
                     <td className="px-4 py-4">
                       <div className="flex items-center gap-3">
                         <div className="h-2 w-full max-w-[320px] rounded-full bg-slate-200">
                           <div
-                            className="h-2 rounded-full bg-slate-900"
+                            className="h-2 rounded-full bg-secondary-color"
                             style={{ width: `${row.mastery}%` }}
                           />
                         </div>
-                        <span className="w-10 text-right font-medium text-slate-700">
+                        <span className="w-10 text-right font-medium  text-slate-700">
                           {row.mastery}%
                         </span>
                       </div>

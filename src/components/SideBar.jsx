@@ -1,4 +1,4 @@
-import { MdInsertChartOutlined } from "react-icons/md";
+import { MdInsertChartOutlined, MdLogout } from "react-icons/md";
 
 const links = [
     { label: "Class management", href: "#", icon: MdInsertChartOutlined },
@@ -56,8 +56,9 @@ const  Sidebar = () => {
         <div className="mt-4 px-2">
           <a
             href="#"
-            className="block w-full rounded-xl border px-3 py-2.5 text-center text-sm font-semibold hover:bg-slate-50"
+            className=" w-full inline-flex justify-center items-center gap-3  rounded-xl  px-3 py-2.5 text-center text-base font-semibold text-red-400 hover:bg-red-500 transition-all hover:text-white"
           >
+            <MdLogout className="text-2xl"/>
             Log Out
           </a>
         </div>
